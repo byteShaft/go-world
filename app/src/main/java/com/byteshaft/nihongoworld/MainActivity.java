@@ -10,14 +10,17 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import im.delight.android.webview.AdvancedWebView;
+
 public class MainActivity extends Activity {
 
-    private WebView mWebView;
+    private AdvancedWebView mWebView;
     private static ProgressDialog progressDialog;
-    private String url = "http://nihongoworld.com/";
+    private String url = "https://www.fuelcheck.nsw.gov.au/app";
     public MainActivity sInstance;
 
     @Override
@@ -25,9 +28,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sInstance = MainActivity.this;
-        mWebView = (WebView) findViewById(R.id.webview);
+        mWebView = (AdvancedWebView) findViewById(R.id.webview);
         mWebView.setWebViewClient(new CustomWebView());
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
+        mWebView.getSettings().getJavaScriptEnabled();
         mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.getSettings().setDisplayZoomControls(false);
 
